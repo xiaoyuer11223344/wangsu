@@ -39,7 +39,7 @@ func TransferRequestMsg(config AkskConfig) model.HttpRequestMsg {
 	return requestMsg
 }
 
-func Invoke(config AkskConfig, jsonStr string) string {
+func Invoke(config AkskConfig, jsonStr string) (string, error) {
 	var requestMsg = TransferRequestMsg(config)
 
 	if config.Method == "POST" || config.Method == "PUT" || config.Method == "PATCH" || config.Method == "DELETE" {
@@ -56,7 +56,11 @@ func Invoke(config AkskConfig, jsonStr string) string {
 	signature := getSignature(requestMsg, config.SecretKey, timeStamp)
 	requestMsg.Headers[constant.Authorization] = genAuthorization(config.AccessKey, requestMsg.SignedHeaders, signature)
 
-	return util.Call(requestMsg)
+	content, err := util.Call(requestMsg)
+	if err != nil {
+		return "", err
+	}
+	return content, nil
 }
 
 func getCurrentTimeSeconds() string {

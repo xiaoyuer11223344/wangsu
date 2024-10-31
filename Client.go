@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/xiaoyuer11223344/wangsu/api/client"
 	"github.com/xiaoyuer11223344/wangsu/common/auth"
+	"log"
 )
 
 func main() {
@@ -18,6 +19,10 @@ func main() {
 	config.EndPoint = "open.chinanetcenter.com"
 	config.Uri = "/api/tools/ip-info"
 	config.Method = "POST"
-	response := auth.Invoke(config, ipInfoServiceRequest.String())
+
+	response, err := auth.Invoke(config, ipInfoServiceRequest.String())
+	if err != nil {
+		log.Fatal(err)
+	}
 	fmt.Printf("response body is %#v\n", response)
 }

@@ -4,6 +4,7 @@ import (
 	"fmt"
 	_ "github.com/xiaoyuer11223344/wangsu/api/client"
 	"github.com/xiaoyuer11223344/wangsu/common/auth"
+	"log"
 )
 
 func main() {
@@ -15,6 +16,9 @@ func main() {
 	config.Uri = "/api/test/example"
 	config.Method = "POST"
 	var requestBody string = "120.79.66.58"
-	response := auth.Invoke(config, requestBody)
+	response, err := auth.Invoke(config, requestBody)
+	if err != nil {
+		log.Fatal(err)
+	}
 	fmt.Printf("response body is %#v\n", response)
 }
