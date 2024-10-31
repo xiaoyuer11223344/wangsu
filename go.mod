@@ -1,4 +1,4 @@
-module wangsu 
+module github.com/xiaoyuer11223344/wangsu
 
 go 1.17
 
