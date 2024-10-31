@@ -1,4 +1,4 @@
-module openApi-authentication
+module wangsu 
 
 go 1.17
 
