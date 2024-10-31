@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"openApi-authentication/api/client"
-	"openApi-authentication/common/auth"
+	"github.com/xiaoyuer11223344/wangsu/api/client"
+	"github.com/xiaoyuer11223344/wangsu/common/auth"
 )
 
 func main() {
